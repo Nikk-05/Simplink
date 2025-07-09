@@ -12,7 +12,7 @@ const Dashboard = () => {
     const handleButtonClick = async () => {
         setLoading(true)
         try {
-            const shortenUrl = await axios.post('https://backend.nikhilworkprofile.workers.dev/shorten', {
+            const shortenUrl = await axios.post('https://simplink.nikhilworkprofile.workers.dev/shorten', {
                 url: inputURL
             });
             if (shortenUrl.data.status === 'success') {
