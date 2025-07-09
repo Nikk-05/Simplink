@@ -10,7 +10,7 @@ const handlePasteUrl = async (c) => {
     const data = await c.req.json();
     const url = data.url;
     const randomeString = generateShortUrl();
-    const shortenURL = 'https://backend.nikhilworkprofile.workers.dev/' + randomeString;
+    const shortenURL = 'https://simplink.nikhilworkprofile.workers.dev/' + randomeString;
     // Get the database URL from environment variables
     const databaseUrl = c.env.DATABASE_URL;
     await createUrl(url, randomeString, databaseUrl);
