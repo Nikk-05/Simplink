@@ -2,6 +2,7 @@ import type { Context } from 'hono'
 import { customAlphabet } from 'nanoid'
 import { createUrl } from '../models/createUrl.model'
 import { getUrl } from '../models/getUrl.models'
+import { limitUrlCount } from '../models/deleteOldUrl.models'
 
 
 const generateShortUrl = () => {
@@ -13,21 +14,30 @@ const generateShortUrl = () => {
 const handlePasteUrl = async (c: Context) => {
     const data = await c.req.json();
     const url = data.url;
-   
+
     const randomeString = generateShortUrl();
-    const shortenURL = 'https://backend.nikhilworkprofile.workers.dev' + randomeString;
+    const shortenURL = 'https://backend.nikhilworkprofile.workers.dev/' + randomeString;
 
     // Get the database URL from environment variables
     const databaseUrl = c.env.DATABASE_URL
+    try {
+        await createUrl(url, randomeString, databaseUrl);
 
-    await createUrl(url, randomeString, databaseUrl);
-
-    return c.json({
-        message: 'URL pasted successfully',
-        shorten_url: shortenURL,
-        original_url: url,
-        status: 'success'
-    })
+        await limitUrlCount(databaseUrl);
+        
+        return c.json({
+            message: 'URL pasted successfully',
+            shorten_url: shortenURL,
+            original_url: url,
+            status: 'success'
+        })
+    }
+    catch(error){
+        return c.json({
+            message: 'Failed to shorten URL',
+            status: 'error'
+        }, 500)
+    } 
 }
 
 const fetchOriginalUrl = async (c: Context) => {
