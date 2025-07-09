@@ -4,13 +4,6 @@ import { createUrl } from '../models/createUrl.model'
 import { getUrl } from '../models/getUrl.models'
 
 
-const checkEndPoint = ((c: Context) => {
-    return c.json({
-        message: 'Welcome to Simplink API',
-        status: 'success'
-    })
-})
-
 const generateShortUrl = () => {
     const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
     const nanoid = customAlphabet(alphabet, 8) // Generates a random string of length 8
@@ -20,9 +13,9 @@ const generateShortUrl = () => {
 const handlePasteUrl = async (c: Context) => {
     const data = await c.req.json();
     const url = data.url;
-    console.log('Received URL:', url);
+   
     const randomeString = generateShortUrl();
-    const shortenURL = 'http://127.0.0.1:8787/' + randomeString;
+    const shortenURL = 'https://backend.nikhilworkprofile.workers.dev' + randomeString;
 
     // Get the database URL from environment variables
     const databaseUrl = c.env.DATABASE_URL
@@ -50,4 +43,4 @@ const fetchOriginalUrl = async (c: Context) => {
 }
 
 
-export { checkEndPoint, handlePasteUrl, fetchOriginalUrl }
+export { handlePasteUrl, fetchOriginalUrl }

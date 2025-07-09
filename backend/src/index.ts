@@ -8,7 +8,6 @@ app.get('/', (c) => {
 
 // Routes
 import url from '../Routes/url.routes'
-app.route('api/v1/url/', url)
 app.route('', url)
 
 export default app
