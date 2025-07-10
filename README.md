@@ -1,6 +1,6 @@
 # 🔗 Simplink
 
-**Simplink** is a fast, lightweight, and privacy-friendly link shortener built with modern web technologies. It allows you to generate short URLs and redirect users seamlessly — ideal for developers, marketers, and teams who want a simple, reliable link management tool.
+**Simplink** is a fast, lightweight, and privacy-friendly link shortener built with modern web technologies. It allows you to generate short URLs and redirect users seamlessly — ideal for developers, marketers, and teams seeking a simple and reliable link management tool.
 
 ---
 
@@ -21,10 +21,11 @@
 |-----------|--------------------------|
 | Frontend  | React, Tailwind CSS      |
 | Backend   | Cloudflare Workers, Hono |
-| Database  | Neon PostgreSQL (via Prisma) |
+| Database  | PostgreSQL (via Prisma)  |
 | Hosting   | Cloudflare Pages + Workers |
 
 ---
 
 🙌 Credits
+
 Built with ❤️ using Cloudflare, React, and Prisma.
